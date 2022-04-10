@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [launch, setLaunch] = useState([])
+  useEffect(() => {
+    fetch('https://api.spacexdata.com/v5/launches')
+    .then(data => data.json())
+    .then(data => data.filter(data => data.date_unix > Date.now()))
+    .then(data => console.log(data))
+  }, [] )
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="wrapper">
+        <div className="place">
+          <div className="card" ></div>
+          <div className="card" ></div>
+          <div className="card" ></div>
+        </div>
+        <div className="place">
+
+        </div>
+        <div className="place">
+
+        </div>
+        <div className="place">
+        </div>
+      </div>
     </div>
   );
 }
